@@ -1,0 +1,514 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cheapest Yes API",
+    "description": "Picks the cheapest incentive that turns a hesitant shopper into a buyer: PayPal Pay Later messaging, free shipping, a free add-on or a small discount, chosen to maximise the merchant's expected profit. List price is the ceiling: no response from this API ever raises a price.",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cheapest-yes.onrender.com",
+      "description": "Hosted demo (PayPal sandbox)"
+    }
+  ],
+  "paths": {
+    "/decide": {
+      "post": {
+        "tags": [
+          "Decisions"
+        ],
+        "summary": "Choose the cheapest incentive for a cart",
+        "description": "Takes a cart and session-behaviour signals, returns the incentive with the highest expected\nprofit (or none), the order amounts, and the reasons. Deterministic given the inputs and\ntoday's guardrail state. Amounts never exceed list price plus standard shipping.",
+        "operationId": "decide_endpoint_decide_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecideResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Ops"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amounts": {
+        "properties": {
+          "item_total": {
+            "type": "number",
+            "title": "Item Total"
+          },
+          "shipping": {
+            "type": "number",
+            "title": "Shipping"
+          },
+          "discount": {
+            "type": "number",
+            "title": "Discount"
+          },
+          "total": {
+            "type": "number",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item_total",
+          "shipping",
+          "discount",
+          "total"
+        ],
+        "title": "Amounts"
+      },
+      "CartItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Product id (catalog id for the demo store)"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Product name",
+            "default": ""
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Price",
+            "description": "List price in USD"
+          },
+          "qty": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Qty",
+            "default": 1
+          },
+          "brand": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "price"
+        ],
+        "title": "CartItem"
+      },
+      "DecideRequest": {
+        "properties": {
+          "cart": {
+            "items": {
+              "$ref": "#/components/schemas/CartItem"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Cart"
+          },
+          "session": {
+            "$ref": "#/components/schemas/Session"
+          },
+          "shopper_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shopper Id",
+            "description": "Opaque id for per-shopper caps; stored only as a hash"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cart"
+        ],
+        "title": "DecideRequest"
+      },
+      "DecideResponse": {
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "title": "Decision Id"
+          },
+          "incentive": {
+            "type": "string",
+            "title": "Incentive",
+            "description": "one of: none, paylater, free_shipping, addon, discount_5, discount_10"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "amounts": {
+            "$ref": "#/components/schemas/Amounts"
+          },
+          "expected_gain": {
+            "type": "number",
+            "title": "Expected Gain",
+            "description": "expected profit vs no incentive, USD"
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation"
+          },
+          "reasons": {
+            "items": {
+              "$ref": "#/components/schemas/Reason"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/Option"
+            },
+            "type": "array",
+            "title": "Options"
+          },
+          "guardrails": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Guardrails"
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision_id",
+          "incentive",
+          "label",
+          "amounts",
+          "expected_gain",
+          "explanation",
+          "reasons",
+          "options",
+          "guardrails"
+        ],
+        "title": "DecideResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Option": {
+        "properties": {
+          "incentive": {
+            "type": "string",
+            "title": "Incentive"
+          },
+          "allowed": {
+            "type": "boolean",
+            "title": "Allowed"
+          },
+          "blocked_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blocked By"
+          },
+          "p_buy": {
+            "type": "number",
+            "title": "P Buy"
+          },
+          "p_paylater": {
+            "type": "number",
+            "title": "P Paylater"
+          },
+          "profit_if_buy": {
+            "type": "number",
+            "title": "Profit If Buy"
+          },
+          "expected_profit": {
+            "type": "number",
+            "title": "Expected Profit"
+          },
+          "gain_vs_none": {
+            "type": "number",
+            "title": "Gain Vs None"
+          },
+          "expected_spend": {
+            "type": "number",
+            "title": "Expected Spend"
+          }
+        },
+        "type": "object",
+        "required": [
+          "incentive",
+          "allowed",
+          "blocked_by",
+          "p_buy",
+          "p_paylater",
+          "profit_if_buy",
+          "expected_profit",
+          "gain_vs_none",
+          "expected_spend"
+        ],
+        "title": "Option"
+      },
+      "Reason": {
+        "properties": {
+          "feature": {
+            "type": "string",
+            "title": "Feature"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "contribution": {
+            "type": "number",
+            "title": "Contribution"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "feature",
+          "value",
+          "contribution",
+          "text"
+        ],
+        "title": "Reason"
+      },
+      "Session": {
+        "properties": {
+          "time_on_page_s": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Time On Page S",
+            "description": "time on the checkout page (s)",
+            "default": 0
+          },
+          "product_views": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Product Views",
+            "description": "product pages viewed this session",
+            "default": 0
+          },
+          "cart_returns": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Cart Returns",
+            "description": "times the shopper came back to the cart",
+            "default": 0
+          },
+          "compare_events": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Compare Events",
+            "description": "price-comparison signals (copied a product name, switched tabs)",
+            "default": 0
+          },
+          "hesitation_after_shipping_s": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Hesitation After Shipping S",
+            "description": "idle time right after the shipping cost was shown (s)",
+            "default": 0
+          },
+          "hesitation_after_total_s": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Hesitation After Total S",
+            "description": "idle time right after the order total was shown (s)",
+            "default": 0
+          },
+          "accessory_views": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Accessory Views",
+            "description": "accessory / add-on products viewed",
+            "default": 0
+          },
+          "is_mobile": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Is Mobile",
+            "description": "device class is mobile",
+            "default": 0
+          },
+          "is_returning": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Is Returning",
+            "description": "returning visitor",
+            "default": 0
+          },
+          "prior_orders": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Prior Orders",
+            "description": "past orders with this merchant (logged-in only)",
+            "default": 0
+          },
+          "browse_seconds": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Browse Seconds",
+            "description": "seconds spent on product pages (feeds the intent model)"
+          },
+          "intent_score": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent Score",
+            "description": "optional precomputed purchase-intent score"
+          }
+        },
+        "type": "object",
+        "title": "Session"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

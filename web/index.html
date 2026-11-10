@@ -1,1 +1,31 @@
-<!doctype html><title>x</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheapest Yes Store</title>
+<meta name="description" content="Demo store: Cheapest Yes picks the cheapest incentive (PayPal Pay Later first) per hesitant shopper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<main class="page">
+  <div class="hero">
+    <div>
+      <h1>Northline Audio &amp; Desk</h1>
+      <p class="muted" style="margin:6px 0 0;max-width:640px">A demo store with real products from the Channel3 catalog. Browse, add to cart and check out with PayPal (sandbox).
+        At checkout, Cheapest Yes picks at most one offer for you, or none. Prices never go above list.</p>
+    </div>
+    <button class="btn primary" id="open-cart">Cart <span id="cart-count" class="tag" style="margin-left:6px">0</span></button>
+  </div>
+  <div id="products" class="products"><div class="muted">Loading products…</div></div>
+</main>
+<footer class="site">Product data and images: Channel3. Payments: PayPal sandbox. Not a real shop; nothing ships.
+  Signals used at checkout: <a href="https://github.com/shivansh193/cheapest-yes#signals">session behaviour only</a>.</footer>
+
+<div id="modal-root"></div>
+<div id="drawer-root"></div>
+<script type="module" src="/static/store.js"></script>
+</body>
+</html>

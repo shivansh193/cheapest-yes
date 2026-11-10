@@ -64,6 +64,8 @@ def reasons_for(X: pd.DataFrame, incentive: str, model, session: dict, k: int = 
     for f, s in ranked:
         if s * direction <= 0.02 or len(out) >= k:
             break
+        if f == "shipping_share" and incentive != "free_shipping":
+            continue  # derived from cart value; only worth saying when shipping is the lever
         text = _fmt(f, X.iloc[0][f])
         if text:
             out.append({"feature": f, "value": float(X.iloc[0][f]), "contribution": round(float(s), 3), "text": text})

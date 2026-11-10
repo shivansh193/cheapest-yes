@@ -1,4 +1,14 @@
-fastapi==0.115.6
-uvicorn[standard]==0.32.1
+# Runtime (pinned to the versions the saved models were trained with)
+fastapi==0.162.2
+starlette==1.10.0
+pydantic==2.14.3
+uvicorn==0.54.0
 httpx==0.28.1
-python-dotenv==1.0.1
+python-dotenv==1.2.4
+numpy==2.4.6
+pandas==3.1.1
+pyarrow==26.0.1
+scipy==1.17.1
+scikit-learn==1.9.1
+lightgbm==4.7.0
+joblib==1.6.0

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merchant Dashboard</title>
+<meta name="description" content="Cheapest Yes merchant dashboard: decision log, profit lift, incentive mix, fairness and budget.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/styles/ag-grid.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/styles/ag-theme-quartz.css">
+<link rel="stylesheet" href="/static/app.css">
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/dist/ag-grid-community.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+<main class="page grid" style="gap:20px">
+  <div class="hero" style="margin:0">
+    <div>
+      <h1>Merchant dashboard</h1>
+      <p class="muted" style="margin:6px 0 0;max-width:760px">Every checkout decision, what it cost, and whether it paid off. The headline numbers come from the simulator A/B
+        (<span id="nshop">20,000</span> fresh shoppers with hidden true responses, 95% CIs). They are simulator results, not field results.</p>
+    </div>
+    <a class="btn" href="https://github.com/shivansh193/cheapest-yes/blob/main/docs/EVAL.md" target="_blank" rel="noopener">Full eval ↗</a>
+  </div>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="two">
+    <div class="card pad"><div class="row between"><h2>Profit per 1,000 shoppers by policy</h2><span class="tag">simulator</span></div>
+      <div class="chart-box" style="height:300px;margin-top:10px"><canvas id="policy-chart"></canvas></div>
+      <p class="small muted" id="policy-note"></p></div>
+    <div class="card pad"><div class="row between"><h2>Incentive mix</h2><span class="tag">decision log</span></div>
+      <div class="chart-box" style="margin-top:10px"><canvas id="mix-chart"></canvas></div>
+      <p class="small muted" id="mix-note"></p></div>
+  </section>
+
+  <section class="three">
+    <div class="card pad"><h2>Fairness check</h2>
+      <p class="small muted" style="margin:4px 0 10px">Offer and discount rates by device and visitor type. The models never see demographics or location; this checks whether behaviour proxies skew offers.</p>
+      <table class="fair" id="fair"></table></div>
+    <div class="card pad"><h2>Today's incentive budget</h2>
+      <p class="small muted" style="margin:4px 0 12px">Expected incentive spend from live (non-simulated) checkouts against the merchant's daily cap. Once it's used up, only no-cost options remain.</p>
+      <div class="row between small"><span id="budget-used">$0</span><span class="muted" id="budget-limit">of $500</span></div>
+      <div class="meter" style="margin-top:6px"><i id="budget-bar" style="width:0%"></i></div>
+      <div class="stack small" style="margin-top:16px" id="guard"></div></div>
+    <div class="card pad copilot"><h2>Ask the copilot</h2>
+      <p class="small muted" style="margin:4px 0 10px">Gemini answers from aggregates of the decision log only. It never makes decisions.</p>
+      <div class="row wrap" id="suggest" style="margin-bottom:8px"></div>
+      <form id="ask" class="row"><input id="q" placeholder="Why did we give free shipping to so many carts yesterday?" maxlength="500"><button class="btn primary">Ask</button></form>
+      <div class="answer" id="answer" style="margin-top:12px"></div></div>
+  </section>
+
+  <section class="card pad">
+    <div class="row between wrap"><div><h2>Decision log</h2><p class="small muted" style="margin:2px 0 0">Source <b>simulated</b> = seeded synthetic shoppers; <b>store</b>, <b>replay</b>, <b>api</b> = live sandbox sessions. PayPal IDs appear once a sandbox payment is captured.</p></div>
+      <div class="row"><input id="filter" placeholder="Filter…" style="padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit">
+      <select id="source" style="padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit">
+        <option value="">All sources</option><option>simulated</option><option>store</option><option>replay</option><option>api</option></select></div></div>
+    <div id="grid" class="ag-theme-quartz" style="margin-top:12px"></div>
+  </section>
+</main>
+<footer class="site">Decision log grid: AG Grid Community. Charts: Chart.js. Payments: PayPal sandbox (Orders v2, signature-verified webhooks).</footer>
+<script type="module" src="/static/dashboard.js"></script>
+</body>
+</html>

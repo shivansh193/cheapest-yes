@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopper Replay</title>
+<meta name="description" content="Replay a simulated shopper, watch Cheapest Yes decide, then pay with PayPal sandbox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<main class="page">
+  <div class="hero">
+    <div>
+      <h1>Shopper replay</h1>
+      <p class="muted" style="margin:6px 0 0;max-width:720px">Pick a simulated shopper. Watch their session, see which incentive the engine picks and why, then complete a real PayPal sandbox payment for their cart.
+      The engine sees only session behaviour; the shopper's hidden profile is revealed afterwards so you can check it.</p>
+    </div>
+  </div>
+  <div class="row wrap" id="personas" style="margin-bottom:18px"></div>
+
+  <div class="replay-grid">
+    <section class="card pad">
+      <div class="row between"><h2>Session</h2><span class="tag" id="clock">0:00</span></div>
+      <div id="cart" style="margin-top:12px"></div>
+      <ul class="timeline" id="timeline" style="margin-top:10px"></ul>
+    </section>
+
+    <section class="grid">
+      <div class="card pad" id="decision"><p class="muted">Choose a shopper above to start.</p></div>
+      <div class="card pad hidden" id="checkout-card">
+        <h2>Checkout</h2>
+        <div class="two" style="margin-top:12px;grid-template-columns:1fr 1fr">
+          <div><div id="incentive"></div><div id="totals" style="margin-top:10px"></div></div>
+          <div><div id="paypal-buttons"></div>
+            <div class="notice">Log in with a PayPal <b>sandbox</b> personal account. Pay Later and card options appear in the button stack when eligible.</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="site">Simulated shoppers: browsing behaviour is a real session from the UCI Online Shoppers dataset (CC BY 4.0); cart, hesitation and incentive responses are simulated. Products: Channel3. Payments: PayPal sandbox.</footer>
+<script type="module" src="/static/replay.js"></script>
+</body>
+</html>
