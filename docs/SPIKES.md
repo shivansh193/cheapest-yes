@@ -9,7 +9,7 @@ Verify each integration before building UI. Status as of 2026-11-10.
 | 3 | Webhook (`CHECKOUT.ORDER.APPROVED`, `PAYMENT.CAPTURE.COMPLETED`) arrives and passes `verify-webhook-signature` | Blocked | Needs sandbox app + a public URL (Render deploy or tunnel) |
 | 4 | Channel3 returns real products and images | Blocked | Needs Channel3 API key |
 | 5a | UCI Online Shoppers Purchasing Intention downloads and loads | **Pass** | 12,330 rows × 18 cols; `Revenue` True 1,908 / False 10,422. CC BY 4.0. DOI 10.24432/C5F88Q |
-| 5b | Criteo Uplift v2.1 downloads and loads | In progress | Official host `go.criteo.net` did not resolve from this machine; using the official Criteo mirror on Hugging Face (`criteo/criteo-uplift`, ungated). Licence CC BY-NC-SA 4.0 |
+| 5b | Criteo Uplift v2.1 downloads and loads | **Pass** | 311 MB gz, columns f0–f11, treatment, conversion, visit, exposure. Official host `go.criteo.net` did not resolve from this machine; using the official Criteo mirror on Hugging Face (`criteo/criteo-uplift`, ungated). Licence CC BY-NC-SA 4.0 |
 
 ## Findings that change the plan
 
