@@ -16,6 +16,7 @@ body = {
     "intent": "CAPTURE",
     "purchase_units": [{
         "reference_id": "spike-1b",
+        "custom_id": "cheapest-yes:spike-3",
         "amount": {**m(total), "breakdown": {"item_total": m(item_total), "shipping": m(shipping), "discount": m(discount)}},
         "items": [{"name": i["name"], "quantity": str(i["quantity"]), "unit_amount": m(i["unit_amount"])} for i in items],
     }],
