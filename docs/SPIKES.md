@@ -13,6 +13,6 @@ Verify each integration before building UI. Status as of 2026-11-10.
 
 ## Findings that change the plan
 
-- **Pay Later is not free for merchants.** PayPal's current US fee page lists Pay Later at 4.99% + fixed fee against 3.49% + fixed fee for PayPal Checkout (+1.5 pp). UK: 3.9% vs 2.9% (+1.0 pp). See [EVIDENCE.md](EVIDENCE.md). The pitch line "can cost the merchant nothing extra" is wrong for the US and UK and must change.
+- **Pay Later is not free for merchants.** PayPal's current US fee page lists Pay Later at 4.99% + fixed fee against 3.49% + fixed fee for PayPal Checkout (+1.5 pp). UK: 3.9% vs 2.9% (+1.0 pp). See [EVIDENCE.md](EVIDENCE.md). The pitch line "can cost the merchant nothing extra" was wrong for the US and UK. **Decided 2026-11-10:** the pitch is now "Pay Later is the cheapest yes: a fraction of a discount, and only charged when the shopper uses it." The engine models Pay Later cost as `P(pays with Pay Later | converts) × 1.5% × order value` (US).
 - **Criteo licence is non-commercial (CC BY-NC-SA 4.0).** Fine for an open-source research eval; the data is not redistributed in this repo, and no model trained on it ships in the product path. Uplift for the demo store comes from the simulator; Criteo is used only to validate the uplift-modelling method (Qini curve).
 - **Old repo `wtp-dynamic-pricing-engine` has no licence file.** It's the same author's code, so reuse is fine, but anything copied gets re-licensed MIT here.
