@@ -200,6 +200,7 @@ def eval_sim() -> dict:
     results = {}
     base = scored["No incentive"]["profit"]
     blanket = scored["Blanket 10% off"]["profit"]
+    always_pl = scored["Always show Pay Later"]["profit"]
     for name, s in scored.items():
         per = 1000  # report per 1,000 shoppers
         lo, hi = _boot_ci(s["profit"], boot)
@@ -219,6 +220,8 @@ def eval_sim() -> dict:
             "lift_vs_none_ci": [round(x * per, 0) for x in _boot_ci(d_none, boot)],
             "lift_vs_blanket_per_1k": round(d_bl.mean() * per, 0),
             "lift_vs_blanket_ci": [round(x * per, 0) for x in _boot_ci(d_bl, boot)],
+            "lift_vs_always_paylater_per_1k": round((s["profit"] - always_pl).mean() * per, 0),
+            "lift_vs_always_paylater_ci": [round(x * per, 0) for x in _boot_ci(s["profit"] - always_pl, boot)],
             "mix": {LABELS[k]: round(float(np.mean(policies[name] == k)), 4) for k in INCENTIVES},
         }
         results[name] = r
@@ -312,6 +315,10 @@ def _md(ev: dict) -> str:
         f"Removing Pay Later from the ladder changes profit per 1k shoppers from ${cyr['profit_per_1k']:,.0f} to "
         f"${ab['profit_per_1k']:,.0f} ({ab['profit_per_1k'] - cyr['profit_per_1k']:+,.0f}) and incentive spend from "
         f"${cyr['incentive_spend_per_1k']:,.0f} to ${ab['incentive_spend_per_1k']:,.0f}.",
+        "",
+        f"Against simply always showing Pay Later, Cheapest Yes adds {cyr['lift_vs_always_paylater_per_1k']:+,.0f} USD per 1k shoppers "
+        f"(95% CI {cyr['lift_vs_always_paylater_ci'][0]:+,.0f} to {cyr['lift_vs_always_paylater_ci'][1]:+,.0f}). Most of the win is "
+        "Pay Later itself; the engine adds the rest by spending on paid incentives only where they pay off.",
         "",
         f"Cheapest Yes picks the same incentive as the oracle (which sees the hidden truth) for "
         f"{s['agreement_with_oracle']:.0%} of shoppers.",

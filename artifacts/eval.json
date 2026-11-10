@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10 20:14 UTC",
+ "generated_at": "2026-11-10 20:37 UTC",
  "intent": {
   "auc": 0.9098,
   "brier": 0.0749,
@@ -16,7 +16,7 @@
   "auuc_ratio_vs_random": 1.732,
   "top20_uplift": 0.046,
   "overall_uplift": 0.0117,
-  "seconds": 27.1
+  "seconds": 26.2
  },
  "sim": {
   "n_shoppers": 20000,
@@ -48,6 +48,11 @@
      -438.0,
      52.0
     ],
+    "lift_vs_always_paylater_per_1k": -7644.0,
+    "lift_vs_always_paylater_ci": [
+     -8041.0,
+     -7224.0
+    ],
     "mix": {
      "No incentive": 1.0,
      "PayPal Pay Later": 0.0,
@@ -60,14 +65,14 @@
    "Blanket 10% off": {
     "profit_per_1k": 15479.0,
     "profit_per_1k_ci": [
-     15138.0,
-     15789.0
+     15141.0,
+     15818.0
     ],
     "expected_profit_per_1k": 15504.0,
     "conversion": 0.4781,
     "conversion_ci": [
-     0.4707,
-     0.4852
+     0.4714,
+     0.4847
     ],
     "offer_rate": 1.0,
     "incentive_spend_per_1k": 5929.0,
@@ -75,13 +80,18 @@
     "leakage_share_of_spend": 0.721,
     "lift_vs_none_per_1k": 187.0,
     "lift_vs_none_ci": [
-     -42.0,
-     420.0
+     -57.0,
+     435.0
     ],
     "lift_vs_blanket_per_1k": 0.0,
     "lift_vs_blanket_ci": [
      0.0,
      0.0
+    ],
+    "lift_vs_always_paylater_per_1k": -7457.0,
+    "lift_vs_always_paylater_ci": [
+     -7852.0,
+     -7097.0
     ],
     "mix": {
      "No incentive": 0.0,
@@ -95,14 +105,14 @@
    "Always show Pay Later": {
     "profit_per_1k": 22936.0,
     "profit_per_1k_ci": [
-     22425.0,
-     23467.0
+     22454.0,
+     23501.0
     ],
     "expected_profit_per_1k": 22939.0,
     "conversion": 0.423,
     "conversion_ci": [
      0.416,
-     0.4294
+     0.4301
     ],
     "offer_rate": 0.9968,
     "incentive_spend_per_1k": 416.0,
@@ -110,13 +120,18 @@
     "leakage_share_of_spend": 0.399,
     "lift_vs_none_per_1k": 7644.0,
     "lift_vs_none_ci": [
-     7259.0,
-     8082.0
+     7240.0,
+     8036.0
     ],
     "lift_vs_blanket_per_1k": 7457.0,
     "lift_vs_blanket_ci": [
-     7067.0,
-     7854.0
+     7050.0,
+     7822.0
+    ],
+    "lift_vs_always_paylater_per_1k": 0.0,
+    "lift_vs_always_paylater_ci": [
+     0.0,
+     0.0
     ],
     "mix": {
      "No incentive": 0.0032,
@@ -130,14 +145,14 @@
    "Cheapest Yes": {
     "profit_per_1k": 23769.0,
     "profit_per_1k_ci": [
-     23298.0,
-     24299.0
+     23243.0,
+     24256.0
     ],
     "expected_profit_per_1k": 23885.0,
     "conversion": 0.4984,
     "conversion_ci": [
-     0.4916,
-     0.5053
+     0.4914,
+     0.5056
     ],
     "offer_rate": 0.7617,
     "incentive_spend_per_1k": 1681.0,
@@ -145,13 +160,18 @@
     "leakage_share_of_spend": 0.475,
     "lift_vs_none_per_1k": 8477.0,
     "lift_vs_none_ci": [
-     8059.0,
-     8912.0
+     8080.0,
+     8899.0
     ],
     "lift_vs_blanket_per_1k": 8290.0,
     "lift_vs_blanket_ci": [
-     7924.0,
-     8656.0
+     7927.0,
+     8668.0
+    ],
+    "lift_vs_always_paylater_per_1k": 833.0,
+    "lift_vs_always_paylater_ci": [
+     720.0,
+     955.0
     ],
     "mix": {
      "No incentive": 0.2383,
@@ -166,13 +186,13 @@
     "profit_per_1k": 17182.0,
     "profit_per_1k_ci": [
      16809.0,
-     17562.0
+     17547.0
     ],
     "expected_profit_per_1k": 17372.0,
     "conversion": 0.451,
     "conversion_ci": [
-     0.4436,
-     0.4577
+     0.4443,
+     0.4578
     ],
     "offer_rate": 0.6909,
     "incentive_spend_per_1k": 2347.0,
@@ -180,13 +200,18 @@
     "leakage_share_of_spend": 0.602,
     "lift_vs_none_per_1k": 1891.0,
     "lift_vs_none_ci": [
-     1711.0,
-     2074.0
+     1712.0,
+     2063.0
     ],
     "lift_vs_blanket_per_1k": 1704.0,
     "lift_vs_blanket_ci": [
-     1528.0,
-     1879.0
+     1525.0,
+     1880.0
+    ],
+    "lift_vs_always_paylater_per_1k": -5753.0,
+    "lift_vs_always_paylater_ci": [
+     -6186.0,
+     -5361.0
     ],
     "mix": {
      "No incentive": 0.3091,
@@ -200,14 +225,14 @@
    "Oracle (knows hidden truth)": {
     "profit_per_1k": 24994.0,
     "profit_per_1k_ci": [
-     24487.0,
-     25518.0
+     24504.0,
+     25491.0
     ],
     "expected_profit_per_1k": 25002.0,
     "conversion": 0.5443,
     "conversion_ci": [
-     0.5375,
-     0.551
+     0.5371,
+     0.5511
     ],
     "offer_rate": 0.9988,
     "incentive_spend_per_1k": 2005.0,
@@ -215,13 +240,18 @@
     "leakage_share_of_spend": 0.4,
     "lift_vs_none_per_1k": 9703.0,
     "lift_vs_none_ci": [
-     9274.0,
-     10139.0
+     9260.0,
+     10127.0
     ],
     "lift_vs_blanket_per_1k": 9516.0,
     "lift_vs_blanket_ci": [
-     9162.0,
-     9902.0
+     9131.0,
+     9854.0
+    ],
+    "lift_vs_always_paylater_per_1k": 2059.0,
+    "lift_vs_always_paylater_ci": [
+     1925.0,
+     2199.0
     ],
     "mix": {
      "No incentive": 0.0012,

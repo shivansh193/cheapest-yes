@@ -130,7 +130,7 @@ def _startup() -> None:
 
 
 # ------------------------------------------------------------------ public API
-@app.post("/decide", response_model=DecideResponse, tags=["Decisions"], summary="Choose the cheapest incentive for a cart")
+@app.post("/decide", response_model=DecideResponse, tags=["Decisions"], summary="Choose the cheapest incentive for a cart", operation_id="decide")
 def decide_endpoint(req: DecideRequest) -> dict:
     """Takes a cart and session-behaviour signals, returns the incentive with the highest expected
     profit (or none), the order amounts, and the reasons. Deterministic given the inputs and
@@ -139,7 +139,7 @@ def decide_endpoint(req: DecideRequest) -> dict:
     return out
 
 
-@app.get("/health", tags=["Ops"])
+@app.get("/health", tags=["Ops"], operation_id="getHealth")
 def health() -> dict:
     return {"ok": True, "paypal": pp.API_BASE, "webhook_configured": bool(os.environ.get("PAYPAL_WEBHOOK_ID")),
             "models": get_bundle().meta}
