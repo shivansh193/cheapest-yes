@@ -58,7 +58,7 @@ def generate(prompt: str, max_tokens: int = 200, temperature: float = 0.2, timeo
                 text = " ".join(p.get("text", "") for p in parts if not p.get("thought")).strip()
             except (KeyError, IndexError):
                 break
-            if text:
+            if len(text) >= 15:  # fragments (e.g. a lone ':') count as a miss: try the next model
                 return text, model
             break
     return None, None

@@ -107,4 +107,7 @@ def llm_sentence(decision: dict, timeout: float = 20.0) -> str | None:
     from .llm import generate
 
     text, _ = generate(prompt, max_tokens=400, timeout=timeout)
-    return text.strip().split("\n")[0][:400] if text else None
+    if not text:
+        return None
+    line = max((ln.strip() for ln in text.splitlines()), key=len, default="")
+    return line[:400] if len(line) >= 15 else None
