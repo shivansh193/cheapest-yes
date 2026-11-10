@@ -1,0 +1,299 @@
+{
+ "generated_at": "2026-11-10 13:17 UTC",
+ "intent": {
+  "auc": 0.9098,
+  "brier": 0.0749,
+  "n_test": 2466,
+  "base_rate": 0.1549
+ },
+ "criteo": null,
+ "sim": {
+  "n_shoppers": 20000,
+  "seed": 2026,
+  "policies": {
+   "No incentive": {
+    "profit_per_1k": 15291.0,
+    "profit_per_1k_ci": [
+     14901.0,
+     15729.0
+    ],
+    "expected_profit_per_1k": 15447.0,
+    "conversion": 0.3399,
+    "conversion_ci": [
+     0.3337,
+     0.3467
+    ],
+    "offer_rate": 0.0,
+    "incentive_spend_per_1k": 0.0,
+    "leakage_per_1k": 0.0,
+    "leakage_share_of_spend": 0.0,
+    "lift_vs_none_per_1k": 0.0,
+    "lift_vs_none_ci": [
+     0.0,
+     0.0
+    ],
+    "lift_vs_blanket_per_1k": -187.0,
+    "lift_vs_blanket_ci": [
+     -438.0,
+     52.0
+    ],
+    "mix": {
+     "No incentive": 1.0,
+     "PayPal Pay Later": 0.0,
+     "Free shipping": 0.0,
+     "Free add-on": 0.0,
+     "5% off": 0.0,
+     "10% off": 0.0
+    }
+   },
+   "Blanket 10% off": {
+    "profit_per_1k": 15479.0,
+    "profit_per_1k_ci": [
+     15138.0,
+     15789.0
+    ],
+    "expected_profit_per_1k": 15504.0,
+    "conversion": 0.4781,
+    "conversion_ci": [
+     0.4707,
+     0.4852
+    ],
+    "offer_rate": 1.0,
+    "incentive_spend_per_1k": 5929.0,
+    "leakage_per_1k": 4276.0,
+    "leakage_share_of_spend": 0.721,
+    "lift_vs_none_per_1k": 187.0,
+    "lift_vs_none_ci": [
+     -42.0,
+     420.0
+    ],
+    "lift_vs_blanket_per_1k": 0.0,
+    "lift_vs_blanket_ci": [
+     0.0,
+     0.0
+    ],
+    "mix": {
+     "No incentive": 0.0,
+     "PayPal Pay Later": 0.0,
+     "Free shipping": 0.0,
+     "Free add-on": 0.0,
+     "5% off": 0.0,
+     "10% off": 1.0
+    }
+   },
+   "Always show Pay Later": {
+    "profit_per_1k": 22936.0,
+    "profit_per_1k_ci": [
+     22425.0,
+     23467.0
+    ],
+    "expected_profit_per_1k": 22939.0,
+    "conversion": 0.423,
+    "conversion_ci": [
+     0.416,
+     0.4294
+    ],
+    "offer_rate": 0.9968,
+    "incentive_spend_per_1k": 416.0,
+    "leakage_per_1k": 166.0,
+    "leakage_share_of_spend": 0.399,
+    "lift_vs_none_per_1k": 7644.0,
+    "lift_vs_none_ci": [
+     7259.0,
+     8082.0
+    ],
+    "lift_vs_blanket_per_1k": 7457.0,
+    "lift_vs_blanket_ci": [
+     7067.0,
+     7854.0
+    ],
+    "mix": {
+     "No incentive": 0.0032,
+     "PayPal Pay Later": 0.9968,
+     "Free shipping": 0.0,
+     "Free add-on": 0.0,
+     "5% off": 0.0,
+     "10% off": 0.0
+    }
+   },
+   "Cheapest Yes": {
+    "profit_per_1k": 23705.0,
+    "profit_per_1k_ci": [
+     23240.0,
+     24249.0
+    ],
+    "expected_profit_per_1k": 23723.0,
+    "conversion": 0.4953,
+    "conversion_ci": [
+     0.488,
+     0.5018
+    ],
+    "offer_rate": 0.7888,
+    "incentive_spend_per_1k": 1666.0,
+    "leakage_per_1k": 808.0,
+    "leakage_share_of_spend": 0.485,
+    "lift_vs_none_per_1k": 8414.0,
+    "lift_vs_none_ci": [
+     8017.0,
+     8828.0
+    ],
+    "lift_vs_blanket_per_1k": 8227.0,
+    "lift_vs_blanket_ci": [
+     7864.0,
+     8585.0
+    ],
+    "mix": {
+     "No incentive": 0.2112,
+     "PayPal Pay Later": 0.3345,
+     "Free shipping": 0.0386,
+     "Free add-on": 0.0999,
+     "5% off": 0.1007,
+     "10% off": 0.2152
+    }
+   },
+   "Cheapest Yes without Pay Later": {
+    "profit_per_1k": 17086.0,
+    "profit_per_1k_ci": [
+     16711.0,
+     17469.0
+    ],
+    "expected_profit_per_1k": 17162.0,
+    "conversion": 0.447,
+    "conversion_ci": [
+     0.44,
+     0.4537
+    ],
+    "offer_rate": 0.711,
+    "incentive_spend_per_1k": 2322.0,
+    "leakage_per_1k": 1427.0,
+    "leakage_share_of_spend": 0.615,
+    "lift_vs_none_per_1k": 1795.0,
+    "lift_vs_none_ci": [
+     1614.0,
+     1998.0
+    ],
+    "lift_vs_blanket_per_1k": 1607.0,
+    "lift_vs_blanket_ci": [
+     1437.0,
+     1774.0
+    ],
+    "mix": {
+     "No incentive": 0.2889,
+     "PayPal Pay Later": 0.0,
+     "Free shipping": 0.0701,
+     "Free add-on": 0.1767,
+     "5% off": 0.1873,
+     "10% off": 0.2768
+    }
+   },
+   "Oracle (knows hidden truth)": {
+    "profit_per_1k": 24994.0,
+    "profit_per_1k_ci": [
+     24487.0,
+     25518.0
+    ],
+    "expected_profit_per_1k": 25002.0,
+    "conversion": 0.5443,
+    "conversion_ci": [
+     0.5375,
+     0.551
+    ],
+    "offer_rate": 0.9988,
+    "incentive_spend_per_1k": 2005.0,
+    "leakage_per_1k": 802.0,
+    "leakage_share_of_spend": 0.4,
+    "lift_vs_none_per_1k": 9703.0,
+    "lift_vs_none_ci": [
+     9274.0,
+     10139.0
+    ],
+    "lift_vs_blanket_per_1k": 9516.0,
+    "lift_vs_blanket_ci": [
+     9162.0,
+     9902.0
+    ],
+    "mix": {
+     "No incentive": 0.0012,
+     "PayPal Pay Later": 0.4069,
+     "Free shipping": 0.0705,
+     "Free add-on": 0.1006,
+     "5% off": 0.1087,
+     "10% off": 0.312
+    }
+   }
+  },
+  "agreement_with_oracle": 0.4539,
+  "fairness": {
+   "mobile": {
+    "shoppers": 11898,
+    "offer_rate": 0.7921,
+    "discount_rate": 0.3149
+   },
+   "desktop": {
+    "shoppers": 8102,
+    "offer_rate": 0.7839,
+    "discount_rate": 0.3173
+   },
+   "new visitor": {
+    "shoppers": 10778,
+    "offer_rate": 0.831,
+    "discount_rate": 0.3827
+   },
+   "returning visitor": {
+    "shoppers": 9222,
+    "offer_rate": 0.7395,
+    "discount_rate": 0.2378
+   }
+  },
+  "mix_by_hidden_archetype": {
+   "will_buy_anyway": {
+    "No incentive": 0.481,
+    "PayPal Pay Later": 0.396,
+    "Free shipping": 0.007,
+    "Free add-on": 0.053,
+    "5% off": 0.043,
+    "10% off": 0.02
+   },
+   "split_payment": {
+    "No incentive": 0.008,
+    "PayPal Pay Later": 0.942,
+    "Free shipping": 0.005,
+    "Free add-on": 0.011,
+    "5% off": 0.009,
+    "10% off": 0.025
+   },
+   "shipping_hunter": {
+    "No incentive": 0.096,
+    "PayPal Pay Later": 0.156,
+    "Free shipping": 0.197,
+    "Free add-on": 0.047,
+    "5% off": 0.193,
+    "10% off": 0.311
+   },
+   "price_sensitive": {
+    "No incentive": 0.011,
+    "PayPal Pay Later": 0.112,
+    "Free shipping": 0.01,
+    "Free add-on": 0.039,
+    "5% off": 0.08,
+    "10% off": 0.748
+   },
+   "bundle_seeker": {
+    "No incentive": 0.051,
+    "PayPal Pay Later": 0.154,
+    "Free shipping": 0.016,
+    "Free add-on": 0.469,
+    "5% off": 0.083,
+    "10% off": 0.227
+   },
+   "browser": {
+    "No incentive": 0.355,
+    "PayPal Pay Later": 0.183,
+    "Free shipping": 0.018,
+    "Free add-on": 0.123,
+    "5% off": 0.197,
+    "10% off": 0.123
+   }
+  }
+ }
+}
