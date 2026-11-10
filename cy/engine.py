@@ -23,7 +23,7 @@ import pandas as pd
 
 from .config import DEFAULT, DISCOUNT_PCT, INCENTIVES, LABELS, MerchantConfig
 from .economics import amounts, incentive_cost, paylater_eligible, profit_if_buy
-from .features import FEATURE_ORDER
+from .features import FEATURE_ORDER, derive
 from .models import ResponseModel
 
 
@@ -105,7 +105,7 @@ def decide(
     shopper_incentives_7d: int = 0,
 ) -> Decision:
     item_total = float(session["cart_value"])
-    X = pd.DataFrame([{f: float(session.get(f, 0) or 0) for f in FEATURE_ORDER}])
+    X = derive(pd.DataFrame([{f: float(session.get(f, 0) or 0) for f in FEATURE_ORDER}]))
     p = model.p_buy(X).iloc[0]
     pl = model.p_paylater(X).iloc[0]
     budget_left = max(cfg.daily_incentive_budget - budget_spent_today, 0.0)

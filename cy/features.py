@@ -21,9 +21,19 @@ STORE_FEATURES: dict[str, str] = {
     "is_returning": "returning visitor",
     "prior_orders": "past orders with this merchant (logged-in only)",
     "intent_score": "purchase-intent score from the public-data model",
+    "shipping_share": "shipping fee as a share of the cart value (derived)",
 }
 
 FEATURE_ORDER = list(STORE_FEATURES)
+
+
+def derive(X):
+    """Derived features, computed the same way everywhere (training, engine, eval)."""
+    from .config import DEFAULT
+
+    X = X.copy()
+    X["shipping_share"] = (DEFAULT.shipping_fee / X["cart_value"].clip(lower=1.0)).round(4)
+    return X
 
 # Columns from the UCI Online Shoppers Purchasing Intention dataset used by the intent model.
 # Region, OperatingSystems, Browser and TrafficType are deliberately dropped: they are coarse

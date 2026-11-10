@@ -21,7 +21,7 @@ import pandas as pd
 from sklearn.isotonic import IsotonicRegression
 
 from .config import INCENTIVES
-from .features import FEATURE_ORDER, UCI_FEATURES
+from .features import FEATURE_ORDER, UCI_FEATURES, derive
 
 ARTIFACTS = Path(__file__).resolve().parent.parent / "artifacts"
 
@@ -66,11 +66,11 @@ class ResponseModel:
     features: list[str] = field(default_factory=lambda: list(FEATURE_ORDER))
 
     def p_buy(self, X: pd.DataFrame) -> pd.DataFrame:
-        X = X[self.features]
+        X = derive(X)[self.features]
         return pd.DataFrame({a: self.arms[a].predict(X) for a in INCENTIVES}, index=X.index)
 
     def p_paylater(self, X: pd.DataFrame) -> pd.DataFrame:
-        X = X[self.features]
+        X = derive(X)[self.features]
         out = {}
         for a in INCENTIVES:
             Z = X.copy()
@@ -80,16 +80,17 @@ class ResponseModel:
 
     def uplift_contrib(self, X: pd.DataFrame, arm: str) -> pd.DataFrame:
         """Per-feature contribution to logit P(buy|arm) - logit P(buy|none), for one or more rows."""
-        X = X[self.features]
+        X = derive(X)[self.features]
         d = self.arms[arm].contrib(X) - self.arms["none"].contrib(X)
         return pd.DataFrame(d[:, :-1], columns=self.features, index=X.index)
 
     def base_contrib(self, X: pd.DataFrame) -> pd.DataFrame:
-        X = X[self.features]
+        X = derive(X)[self.features]
         return pd.DataFrame(self.arms["none"].contrib(X)[:, :-1], columns=self.features, index=X.index)
 
 
 def fit_response(log: pd.DataFrame, seed: int = 0) -> ResponseModel:
+    log = derive(log)
     arms = {}
     for i, a in enumerate(INCENTIVES):
         sub = log[log["arm"] == a]

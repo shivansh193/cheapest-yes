@@ -45,6 +45,8 @@ def _fmt(feature: str, v: float) -> str | None:
         return f"spent {v:.0f}s on checkout"
     if feature == "intent_score":
         return f"browsing pattern scores {v:.2f} on the purchase-intent model"
+    if feature == "shipping_share":
+        return f"shipping would add {v:.0%} to the cart"
     if feature == "n_items":
         return f"{v:.0f} items in the cart"
     return None
@@ -86,10 +88,6 @@ def template_sentence(incentive: str, reasons: list[dict], best, options, sessio
 
 def llm_sentence(decision: dict, timeout: float = 20.0) -> str | None:
     """One plain-English sentence for the merchant. Returns None on any failure (the template is the fallback)."""
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key:
-        return None
-    model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
     facts = {
         "chosen_incentive": decision["label"],
         "reasons": [r["text"] for r in decision["reasons"]],
@@ -100,21 +98,11 @@ def llm_sentence(decision: dict, timeout: float = 20.0) -> str | None:
     prompt = (
         "You write one sentence (max 35 words) for an online merchant's dashboard explaining why their "
         "checkout showed a shopper this incentive. Use only these facts; no new numbers, no hype, "
-        "no second sentence. If the incentive is 'No incentive', explain why nothing was offered.\n"
+        "no second sentence. Call the person 'the shopper'. If the incentive is 'No incentive', explain why "
+        "nothing was offered. Reply with the sentence only.\n"
         + json.dumps(facts)
     )
-    body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.2, "maxOutputTokens": 120}}
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    for attempt in range(3):
-        try:
-            r = httpx.post(url, headers={"x-goog-api-key": key}, json=body, timeout=timeout)
-            if r.status_code in (429, 500, 503):
-                time.sleep(1.5 * (attempt + 1))
-                continue
-            r.raise_for_status()
-            parts = r.json()["candidates"][0]["content"]["parts"]
-            text = " ".join(p.get("text", "") for p in parts).strip()
-            return text.split("\n")[0][:400] or None
-        except Exception:  # noqa: BLE001
-            time.sleep(1.0)
-    return None
+    from .llm import generate
+
+    text, _ = generate(prompt, max_tokens=400, timeout=timeout)
+    return text.strip().split("\n")[0][:400] if text else None

@@ -21,7 +21,7 @@ from .data import load_uci
 from .models import Bundle, fit_calibrated, fit_response, uci_frame
 
 TRAIN_SEED = 101
-N_TRAIN = 90_000
+N_TRAIN = 240_000
 
 
 def with_intent(pop: sim.Population, intent) -> pd.DataFrame:
