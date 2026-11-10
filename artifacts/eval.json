@@ -1,12 +1,23 @@
 {
- "generated_at": "2026-11-10 13:17 UTC",
+ "generated_at": "2026-11-10 13:18 UTC",
  "intent": {
   "auc": 0.9098,
   "brier": 0.0749,
   "n_test": 2466,
   "base_rate": 0.1549
  },
- "criteo": null,
+ "criteo": {
+  "n_sample": 1677452,
+  "n_test": 503314,
+  "outcome": "visit",
+  "treatment_rate": 0.85,
+  "visit_rate": 0.0472,
+  "qini_coefficient": 0.003645,
+  "auuc_ratio_vs_random": 1.732,
+  "top20_uplift": 0.046,
+  "overall_uplift": 0.0117,
+  "seconds": 25.0
+ },
  "sim": {
   "n_shoppers": 20000,
   "seed": 2026,
