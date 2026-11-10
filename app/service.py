@@ -126,14 +126,22 @@ def simulated_shopper(persona_archetype: str | None, seed: int, typical: bool = 
     from cy.train import with_intent
 
     b = get_bundle()
-    n = 15 if typical and persona_archetype else 1
+    n = 25 if typical and persona_archetype else 1
     pop = sim.generate(n, load_uci(), seed=seed, archetype=persona_archetype)
+    X = with_intent(pop, b.intent)
     i = 0
     if n > 1:
+        # medoid: close to the persona's hidden profile AND to the median of its visible signals
         a = sim.ARCHETYPES[persona_archetype]
         target = np.array([a["p0"]] + [a["p0"] + a["lift"][k] for k in INCENTIVES[1:]])
-        i = int(np.abs(pop.p_true.to_numpy() - target).sum(axis=1).argmin())
-    X = with_intent(pop, b.intent)
+        truth_d = np.abs(pop.p_true.to_numpy() - target).sum(axis=1)
+        cols = ["cart_value", "hesitation_after_shipping_s", "hesitation_after_total_s", "compare_events", "product_views",
+                "accessory_views", "cart_returns", "prior_orders", "intent_score"]
+        Z = X[cols].astype(float)
+        Z["cart_value"] = np.log(Z["cart_value"])
+        Z = (Z - Z.median()) / (Z.std() + 1e-6)
+        sig_d = Z.abs().mean(axis=1).to_numpy()
+        i = int((truth_d * 4 + sig_d).argmin())
     return X.iloc[i].to_dict(), pop.archetype[i], {"p_true": pop.p_true.iloc[i].to_dict(), "pl_true": pop.pl_true.iloc[i].to_dict(),
                                                    "uci": pop.uci.iloc[i][["ProductRelated", "ProductRelated_Duration", "BounceRates", "ExitRates", "PageValues", "VisitorType"]].to_dict()}
 
