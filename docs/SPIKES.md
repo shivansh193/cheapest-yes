@@ -4,10 +4,10 @@ Verify each integration before building UI. Status as of 2026-11-10.
 
 | # | Spike | Status | Result |
 |---|---|---|---|
-| 1 | Orders v2 sandbox order with `discount` and `shipping: 0` in `amount.breakdown`: create, approve, capture | Blocked | Needs PayPal sandbox app credentials |
-| 2 | Pay Later messaging + Pay Later funding source in sandbox | Blocked | Needs sandbox credentials and a US sandbox personal account |
-| 3 | Webhook (`CHECKOUT.ORDER.APPROVED`, `PAYMENT.CAPTURE.COMPLETED`) arrives and passes `verify-webhook-signature` | Blocked | Needs sandbox app + a public URL (Render deploy or tunnel) |
-| 4 | Channel3 returns real products and images | Blocked | Needs Channel3 API key |
+| 1 | Orders v2 sandbox order with `discount` and `shipping: 0` in `amount.breakdown`: create, approve, capture | **Create: pass.** Approve/capture pending | `spikes/spike_orders.py`. Order with item_total 200.00, a $0 add-on line, shipping 0.00, discount 10.00, total 190.00 accepted (HTTP 200, `PAYER_ACTION_REQUIRED`). Awaiting buyer approval in sandbox, then capture |
+| 2 | Pay Later messaging + Pay Later funding source in sandbox | **Pass (US buyer)** | `spikes/paylater.html`, JS SDK with `components=buttons,messages,funding-eligibility`, `enable-funding=paylater`, `buyer-country=US`. `isFundingEligible(PAYLATER)` true; Pay Later button renders in the stack and standalone. Messaging is offer-aware: $120 cart → "Pay in 4 interest-free payments of $30.00"; $240 cart → "Starting at $22.93/mo or as low as 0% APR" (Pay Monthly). Demo targets US buyers only; the merchant app is US |
+| 3 | Webhook (`CHECKOUT.ORDER.APPROVED`, `PAYMENT.CAPTURE.COMPLETED`) arrives and passes `verify-webhook-signature` | Blocked | Needs a public URL (Render) and a webhook registered on the PayPal app |
+| 4 | Channel3 returns real products and images | **Pass** | `spikes/spike_channel3.py`. `POST /v1/search` "wireless headphones" → 20 real products (Philips, Sennheiser, Panasonic, JVC, Anker) with `images` on cdn.trychannel3.com, `offers`, `brands`, `ratings` |
 | 5a | UCI Online Shoppers Purchasing Intention downloads and loads | **Pass** | 12,330 rows × 18 cols; `Revenue` True 1,908 / False 10,422. CC BY 4.0. DOI 10.24432/C5F88Q |
 | 5b | Criteo Uplift v2.1 downloads and loads | **Pass** | 311 MB gz, columns f0–f11, treatment, conversion, visit, exposure. Official host `go.criteo.net` did not resolve from this machine; using the official Criteo mirror on Hugging Face (`criteo/criteo-uplift`, ungated). Licence CC BY-NC-SA 4.0 |
 

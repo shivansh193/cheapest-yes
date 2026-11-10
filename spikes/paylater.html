@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pay Later spike</title>
+<style>body{font-family:system-ui;max-width:560px;margin:40px auto;padding:0 16px}#log{font:12px monospace;white-space:pre-wrap;background:#f4f4f4;padding:8px}</style>
+</head>
+<body>
+<h1>Pay Later spike</h1>
+<p>Cart total: <strong>$240.00</strong></p>
+<div id="msg" data-pp-message data-pp-amount="240.00" data-pp-placement="payment" data-pp-style-layout="text"></div>
+<h3>Buttons (all eligible funding sources)</h3>
+<div id="buttons"></div>
+<h3>Pay Later button only</h3>
+<div id="paylater-only"></div>
+<pre id="log"></pre>
+<script>
+  const log = (...a) => { document.getElementById('log').textContent += a.join(' ') + '\n'; };
+  const q = new URLSearchParams(location.search);
+  const clientId = q.get('cid');
+  const buyerCountry = q.get('country') || 'US';
+  const s = document.createElement('script');
+  s.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(clientId)}&currency=USD&components=buttons,messages,funding-eligibility&enable-funding=paylater&buyer-country=${buyerCountry}`;
+  s.setAttribute('data-namespace', 'paypal');
+  s.onload = () => {
+    log('sdk loaded, buyer-country=' + buyerCountry);
+    log('paylater eligible: ' + paypal.isFundingEligible(paypal.FUNDING.PAYLATER));
+    paypal.Buttons({ createOrder: () => Promise.reject('spike') }).render('#buttons');
+    const pl = paypal.Buttons({ fundingSource: paypal.FUNDING.PAYLATER, createOrder: () => Promise.reject('spike') });
+    log('paylater button isEligible: ' + pl.isEligible());
+    if (pl.isEligible()) pl.render('#paylater-only');
+    setTimeout(() => {
+      const m = document.querySelector('#msg iframe, #msg span, #msg div');
+      log('message node: ' + (m ? m.tagName + ' h=' + m.offsetHeight : 'none'));
+    }, 4000);
+  };
+  s.onerror = () => log('sdk failed to load');
+  document.head.appendChild(s);
+</script>
+</body>
+</html>
