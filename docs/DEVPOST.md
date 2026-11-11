@@ -7,7 +7,7 @@
 **Links**
 - Try it: https://cheapest-yes.onrender.com (store) · /replay · /dashboard · /docs
 - Code: https://github.com/shivansh193/cheapest-yes (MIT)
-- Video: <YouTube link>
+- Video: https://youtu.be/_RMi_d4PXs0
 
 **Built with:** paypal, paypal-orders-v2, paypal-js-sdk, pay-later, paypal-webhooks, gemini, lightgbm, scikit-learn, shap, python, fastapi, sqlite, javascript, chart.js, ag-grid, channel3, render, apimatic
 

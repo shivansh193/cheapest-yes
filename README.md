@@ -8,6 +8,7 @@ Built for the PayPal AI Hackathon 2026, with **PayPal** (Orders v2, JS SDK, Pay 
 
 | | |
 |---|---|
+| Video (2:52) | **https://youtu.be/_RMi_d4PXs0** |
 | Live demo | **https://cheapest-yes.onrender.com** (store), [/replay](https://cheapest-yes.onrender.com/replay), [/dashboard](https://cheapest-yes.onrender.com/dashboard), [/docs](https://cheapest-yes.onrender.com/docs) |
 | Payments | PayPal **sandbox** only. Log in at checkout with any PayPal sandbox *personal* account. |
 | Eval | [docs/EVAL.md](docs/EVAL.md) (regenerate with `make eval`) |
