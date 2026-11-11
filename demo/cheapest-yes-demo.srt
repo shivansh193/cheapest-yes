@@ -1,0 +1,127 @@
+1
+00:00:00,300 --> 00:00:03,326
+Seven in ten online carts never check out.
+
+2
+00:00:03,366 --> 00:00:07,600
+Cheapest Yes uses PayPal and AI to win
+them back, cheaply.
+
+3
+00:00:08,400 --> 00:00:11,052
+Most stores answer with a blanket
+discount.
+
+4
+00:00:11,092 --> 00:00:15,350
+That hands margin to shoppers who would
+have paid full price anyway.
+
+5
+00:00:18,400 --> 00:00:21,966
+Price isn't the only lever. On a $240
+cart,
+
+6
+00:00:22,006 --> 00:00:27,501
+PayPal Pay Later costs about $3.60 extra,
+and only when it's used.
+
+7
+00:00:27,541 --> 00:00:29,050
+10% off costs $24.
+
+8
+00:00:30,300 --> 00:00:35,635
+AI models score each shopper's session. A
+profit engine picks one incentive,
+
+9
+00:00:35,675 --> 00:00:38,080
+or none. PayPal runs the checkout.
+
+10
+00:00:41,000 --> 00:00:45,661
+This shopper stalls at a $288 total. The
+engine picks Pay Later,
+
+11
+00:00:45,701 --> 00:00:51,430
+lifting the chance of a purchase from 20
+to 73 percent, and shows its reasons.
+
+12
+00:01:00,990 --> 00:01:06,390
+Then a real PayPal sandbox payment, using
+a test card. No real money moves.
+
+13
+00:01:14,180 --> 00:01:17,980
+The capture and PayPal's fee are logged
+with the decision.
+
+14
+00:01:22,080 --> 00:01:27,516
+A loyal customer, already 80 percent
+likely to buy. The engine offers nothing,
+
+15
+00:01:27,556 --> 00:01:29,030
+and keeps the margin.
+
+16
+00:01:36,380 --> 00:01:41,511
+A student comparing prices in other tabs.
+Pay Later barely moves them,
+
+17
+00:01:41,551 --> 00:01:44,210
+so here the cheapest yes is 10% off.
+
+18
+00:01:53,380 --> 00:01:58,834
+Every option is scored on expected profit
+after fees. Prices never go above list,
+
+19
+00:01:58,874 --> 00:02:02,130
+and budgets and per-shopper caps keep it
+honest.
+
+20
+00:02:04,880 --> 00:02:07,297
+On 20,000 simulated shoppers,
+
+21
+00:02:07,337 --> 00:02:12,930
+it beats a blanket discount by about
+$8,300 per thousand shoppers.
+
+22
+00:02:14,080 --> 00:02:18,235
+Every decision lands in an AG Grid log
+with its PayPal IDs,
+
+23
+00:02:18,275 --> 00:02:23,110
+and a Gemini copilot answers the
+merchant's questions from that log.
+
+24
+00:02:32,160 --> 00:02:37,927
+Honestly, always showing Pay Later gets
+most of the way, and without Pay Later,
+
+25
+00:02:37,967 --> 00:02:43,147
+profit drops $6,600 per thousand shoppers.
+These are simulator results,
+
+26
+00:02:43,187 --> 00:02:44,510
+not field results.
+
+27
+00:02:45,060 --> 00:02:50,940
+List price is the ceiling. Profit is the
+goal. PayPal Pay Later is the cheapest yes.

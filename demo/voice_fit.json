@@ -1,0 +1,114 @@
+[
+ {
+  "section": "hook",
+  "start": 0.3,
+  "length": 7.3,
+  "room": 7.85,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "problem",
+  "start": 8.4,
+  "length": 6.95,
+  "room": 9.75,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "ladder",
+  "start": 18.4,
+  "length": 10.65,
+  "room": 11.65,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "glance",
+  "start": 30.3,
+  "length": 7.775,
+  "room": 10.45,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r1a",
+  "start": 41.0,
+  "length": 10.425,
+  "room": 19.74,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r1b",
+  "start": 60.99,
+  "length": 5.4,
+  "room": 12.94,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r1c",
+  "start": 74.18,
+  "length": 3.8,
+  "room": 7.65,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r2",
+  "start": 82.08,
+  "length": 6.95,
+  "room": 14.05,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r3",
+  "start": 96.38,
+  "length": 7.825,
+  "room": 16.75,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "how",
+  "start": 113.38,
+  "length": 8.75,
+  "room": 11.25,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r4a",
+  "start": 124.88,
+  "length": 8.05,
+  "room": 8.95,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "r4b",
+  "start": 134.08,
+  "length": 9.025,
+  "room": 17.83,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "results",
+  "start": 152.16,
+  "length": 12.35,
+  "room": 12.65,
+  "tempo": 1.0,
+  "fits": true
+ },
+ {
+  "section": "outro",
+  "start": 165.06,
+  "length": 5.875,
+  "room": 6.15,
+  "tempo": 1.0,
+  "fits": true
+ }
+]
