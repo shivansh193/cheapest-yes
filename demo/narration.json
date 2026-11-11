@@ -1,0 +1,90 @@
+{
+  "voice": "af_heart",
+  "speed": 1.0,
+  "lines": [
+    {
+      "section": "hook",
+      "offset": 0.3,
+      "spoken": "Seven in ten online carts never check out. Cheapest Yes uses PayPal and AI to win them back, cheaply.",
+      "written": "Seven in ten online carts never check out. Cheapest Yes uses PayPal and AI to win them back, cheaply."
+    },
+    {
+      "section": "problem",
+      "offset": 0.4,
+      "spoken": "Most stores answer with a blanket discount. That hands margin to shoppers who would have paid full price anyway.",
+      "written": "Most stores answer with a blanket discount. That hands margin to shoppers who would have paid full price anyway."
+    },
+    {
+      "section": "ladder",
+      "offset": 0.4,
+      "spoken": "Price isn't the only lever. On a two-forty cart, PayPal Pay Later costs about three sixty extra, and only when it's used. Ten percent off costs twenty-four.",
+      "written": "Price isn't the only lever. On a $240 cart, PayPal Pay Later costs about $3.60 extra, and only when it's used. 10% off costs $24."
+    },
+    {
+      "section": "glance",
+      "offset": 0.3,
+      "spoken": "AI models score each shopper's session. A profit engine picks one incentive, or none. PayPal runs the checkout.",
+      "written": "AI models score each shopper's session. A profit engine picks one incentive, or none. PayPal runs the checkout."
+    },
+    {
+      "section": "r1a",
+      "offset": 0.5,
+      "spoken": "This shopper stalls at a two eighty eight total. The engine picks Pay Later, lifting the chance of a purchase from twenty to seventy three percent, and shows its reasons.",
+      "written": "This shopper stalls at a $288 total. The engine picks Pay Later, lifting the chance of a purchase from 20 to 73 percent, and shows its reasons."
+    },
+    {
+      "section": "r1b",
+      "offset": 0.4,
+      "spoken": "Then a real PayPal sandbox payment, using a test card. No real money moves.",
+      "written": "Then a real PayPal sandbox payment, using a test card. No real money moves."
+    },
+    {
+      "section": "r1c",
+      "offset": 0.2,
+      "spoken": "The capture and PayPal's fee are logged with the decision.",
+      "written": "The capture and PayPal's fee are logged with the decision."
+    },
+    {
+      "section": "r2",
+      "offset": 0.6,
+      "spoken": "A loyal customer, already eighty percent likely to buy. The engine offers nothing, and keeps the margin.",
+      "written": "A loyal customer, already 80 percent likely to buy. The engine offers nothing, and keeps the margin."
+    },
+    {
+      "section": "r3",
+      "offset": 0.6,
+      "spoken": "A student comparing prices in other tabs. Pay Later barely moves them, so here the cheapest yes is ten percent off.",
+      "written": "A student comparing prices in other tabs. Pay Later barely moves them, so here the cheapest yes is 10% off."
+    },
+    {
+      "section": "how",
+      "offset": 0.4,
+      "spoken": "Every option is scored on expected profit after fees. Prices never go above list, and budgets and per-shopper caps keep it honest.",
+      "written": "Every option is scored on expected profit after fees. Prices never go above list, and budgets and per-shopper caps keep it honest."
+    },
+    {
+      "section": "r4a",
+      "offset": 0.4,
+      "spoken": "On twenty thousand simulated shoppers, it beats a blanket discount by about eighty-three hundred dollars per thousand shoppers.",
+      "written": "On 20,000 simulated shoppers, it beats a blanket discount by about $8,300 per thousand shoppers."
+    },
+    {
+      "section": "r4b",
+      "offset": 0.6,
+      "spoken": "Every decision lands in an AG Grid log with its PayPal IDs, and a Gemini copilot answers the merchant's questions from that log.",
+      "written": "Every decision lands in an AG Grid log with its PayPal IDs, and a Gemini copilot answers the merchant's questions from that log."
+    },
+    {
+      "section": "results",
+      "offset": 0.4,
+      "spoken": "Honestly, always showing Pay Later gets most of the way, and without Pay Later, profit drops sixty-six hundred dollars per thousand shoppers. These are simulator results, not field results.",
+      "written": "Honestly, always showing Pay Later gets most of the way, and without Pay Later, profit drops $6,600 per thousand shoppers. These are simulator results, not field results."
+    },
+    {
+      "section": "outro",
+      "offset": 0.3,
+      "spoken": "List price is the ceiling. Profit is the goal. PayPal Pay Later is the cheapest yes.",
+      "written": "List price is the ceiling. Profit is the goal. PayPal Pay Later is the cheapest yes."
+    }
+  ]
+}

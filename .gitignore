@@ -18,3 +18,5 @@ dist/
 .DS_Store
 .claude/
 *.db
+demo/out/
+demo_local.db

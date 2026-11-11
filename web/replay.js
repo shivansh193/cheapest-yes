@@ -46,7 +46,8 @@ async function run(persona, btn) {
   $("#timeline").innerHTML = ""; $("#cart").innerHTML = ""; $("#checkout-card").classList.add("hidden");
   $("#decision").innerHTML = `<div class="row muted"><span class="spinner"></span> Simulating a ${esc(persona)}…</div>`;
   let d;
-  try { d = await api("/api/replay", { persona }); } catch (e) { $("#decision").innerHTML = `<p style="color:var(--bad)">${esc(e.message)}</p>`; return; }
+  const seed = new URLSearchParams(location.search).get("seed");
+  try { d = await api("/api/replay", seed ? { persona, seed: +seed } : { persona }); } catch (e) { $("#decision").innerHTML = `<p style="color:var(--bad)">${esc(e.message)}</p>`; return; }
   if (my !== running) return;
   const s = d.session;
   $("#cart").innerHTML = d.cart.map((i) => `<div class="cart-item"><img src="${esc(i.image)}" alt=""><div class="small" style="font-weight:600">${esc(i.title)}</div><div class="num small">${money(i.price)}</div></div>`).join("");

@@ -188,7 +188,7 @@ def replay(req: ReplayRequest) -> dict:
     seed = req.seed if req.seed is not None else int(np.random.default_rng().integers(1, 1_000_000))
     s, _, truth = service.simulated_shopper(arch, seed, typical=True)
     cart = service.cart_for_value(s["cart_value"], np.random.default_rng(seed))
-    d = service.run_decision(cart, s, "replay", shopper_id=f"replay-{seed}", persona=req.persona)
+    d = service.run_decision(cart, s, "replay", shopper_id=f"replay-{req.persona}-{seed}", persona=req.persona)
     d["seed"] = seed
     d["uci_session"] = truth["uci"]
     d["hidden_truth"] = {"archetype": arch, "p_buy": {k: round(v, 3) for k, v in truth["p_true"].items()}}
