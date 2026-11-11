@@ -132,13 +132,13 @@ parts, tl = [], []
 for p, start, dur in items:
     kind, sid = p[0], p[1]
     if kind == "slide":
-        parts.append(f'<section id="{sid}" class="scene" data-start="{start}" data-duration="{dur}">{p[3]}</section>')
+        parts.append(f'<section id="{sid}" class="scene clip" data-start="{start}" data-duration="{dur}">{p[3]}</section>')
         tl.append(f'tl.fromTo("#{sid}", {{opacity:0}}, {{opacity:1, duration:.35}}, {start});')
         tl.append(f'tl.from("#{sid} .card, #{sid} h2, #{sid} .rule, #{sid} .big, #{sid} .name, #{sid} .tag, #{sid} .outro", {{y:18, opacity:0, duration:.45, stagger:.09, ease:"power2.out"}}, {start + 0.15});')
         tl.append(f'tl.to("#{sid}", {{opacity:0, duration:.3}}, {start + dur - 0.3});')
     elif kind == "card":
         _, _, _, num, title, sub = p
-        parts.append(f'<section id="{sid}" class="scene chapter" data-start="{start}" data-duration="{dur}"><div class="mono num">{num}</div>'
+        parts.append(f'<section id="{sid}" class="scene clip chapter" data-start="{start}" data-duration="{dur}"><div class="mono num">{num}</div>'
                      f'<div class="ctitle">{E(title)}</div><div class="csub">{E(sub)}</div></section>')
         tl.append(f'tl.fromTo("#{sid}", {{opacity:0}}, {{opacity:1, duration:.25}}, {start});')
         tl.append(f'tl.from("#{sid} .ctitle", {{x:-24, duration:.5, ease:"power2.out"}}, {start});')
@@ -152,8 +152,8 @@ for p, start, dur in items:
                     '<p>Orders v2 order created on the server from the stored decision: $288.00 items + $8.99 shipping.</p>'
                     '<p>Paid with a published sandbox test card. No real money, no real account.</p>'
                     '<p class="mono small">Capture + fee recorded · webhook signature verified</p></div>')
-        parts.append(f'<section id="{sid}" class="scene clipscene" data-start="{start}" data-duration="{dur}">'
-                     f'<div class="{cls}"><video id="{sid}_v" src="media/{file}" muted playsinline data-start="{start}" data-duration="{dur}" '
+        parts.append(f'<section id="{sid}" class="scene clipscene">'
+                     f'<div class="{cls}"><video id="{sid}_v" class="clip" src="media/{file}" muted playsinline data-start="{start}" data-duration="{dur}" '
                      f'data-media-start="{m_in}" data-track-index="1"></video></div>{side}<div class="capstrip">'
                      + "".join(f'<div class="cap" id="{sid}_c{i}">{E(text)}</div>' for i, (_, text) in enumerate(caps))
                      + "</div></section>")
@@ -226,7 +226,7 @@ for p in PLAN:
             shutil.copy(src, OUT / "media" / p[2])
 doc = f"""<!doctype html><html><head><meta charset="utf-8"><title>Cheapest Yes demo</title><style>{CSS}</style>
 <script src="gsap.min.js"></script></head><body>
-<div id="root" data-composition-id="cheapest-yes-demo" data-duration="{TOTAL}" data-width="1920" data-height="1080" data-fps="{FPS}">
+<div id="root" data-composition-id="main" data-duration="{TOTAL}" data-width="1920" data-height="1080" data-fps="{FPS}">
 {"".join(parts)}
 </div>
 <script>
